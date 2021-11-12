@@ -1,0 +1,9 @@
+charset,UTF-8
+type,plugin
+name,うかてん
+id,52a46aa0-78b6-11eb-9881-0800200c9a66
+filename,akari.dll
+craftman,Don
+craftmanurl,http://nikolat.herokuapp.com/
+homeurl,http://home.384.jp/evidence/update/ukaten/
+secondchangeinterval,0

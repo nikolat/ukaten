@@ -1,0 +1,61 @@
+//================================================
+// ゴーストからの利用を想定したイベント関数群
+//================================================
+// プラグインのバージョンを取得
+// [戻り値]
+// Reference0: プラグインのバージョン("ukaten/0.3"等)
+string OnGetPluginVersion(dict ref)
+{
+	dictOptionalHeader["target"] = ref["Sender"];
+	dictOptionalHeader["event"] = ref["ID"];
+	dictOptionalHeader["reference"] = {version()};
+	return "";
+}
+
+// ユーザが設定した地域のIDと表示名を取得
+// [戻り値]
+// Reference0: 地域ID(東京都の場合は"130000")
+// Reference1: 地域名("東京都"等)
+string OnGetSavedArea(dict ref)
+{
+	if (_dicvn(dictWeatherAreas) == 0) {
+		array	arJson = _httpget( "http://www.jma.go.jp/bosai/common/const/area.json", "utf8" );
+		dictWeatherAreas = _json2azv(arJson);
+	}
+	string officeId = dictSaveData["officeId"];
+	string officeName = dictWeatherAreas["offices"][officeId]["name"];
+
+	dictOptionalHeader["target"] = ref["Sender"];
+	dictOptionalHeader["event"] = ref["ID"];
+	dictOptionalHeader["reference"] = {officeId, officeName};
+	return "";
+}
+
+// 気象庁から天気予報を取得（※利用時は出典が気象庁である旨を明示してください。）
+// [引数]
+// Reference0: 取得情報の種類("forecast","overview_forecast","overview_week")
+//             省略時は"overview_forecast"
+// Reference1: 地域ID(東京都の場合は"130000")
+//             省略時は保存しているユーザ設定値を使用
+// Reference2: 取得情報のキー("publishingOffice","reportDatetime","targetArea","headlineText","text"等)
+//             省略時は"text"
+// [戻り値]
+// Reference0: 取得情報
+string OnGetWeatherInfo(dict ref)
+{
+	string	infoType = ref["Reference0"];
+	string	officeId = ref["Reference1"];
+	string	infoKey = ref["Reference2"];
+	if (infoType == "") infoType = "overview_forecast";
+	if (officeId == "") officeId = dictSaveData["officeId"];
+	if (infoKey == "") infoKey = "text";
+
+	array	arJson = _httpget("https://www.jma.go.jp/bosai/forecast/data/" + infoType + "/" + officeId + ".json", "utf8");
+	dict	dictWeather = _json2azv(arJson);
+	string	response = dictWeather[infoKey];
+
+	dictOptionalHeader["target"] = ref["Sender"];
+	dictOptionalHeader["event"] = ref["ID"];
+	dictOptionalHeader["reference"] = {response};
+	return "";
+}

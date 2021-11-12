@@ -1,0 +1,4 @@
+charset,Shift_JIS
+type,plugin
+name,‚¤‚©‚Ä‚ñ
+directory,ukaten

@@ -1,0 +1,123 @@
+
+dict dictWeatherAreas;
+string sender;
+
+string OnMenuExec(dict ref)
+{
+	if (_dicvn(dictWeatherAreas) == 0) {
+		array	arJson = _httpget( "http://www.jma.go.jp/bosai/common/const/area.json", "utf8" );
+		dictWeatherAreas = _json2azv(arJson);
+	}
+	string officeId = dictSaveData["officeId"];
+	string s = "\0\s[0]\_q";
+	if (officeId == "") {
+		s += "※地域を設定してください\n";
+	}
+	else {
+		s += "\![*]\__q[WeatherForecast]天気予報\__q\n";
+	}
+	s += "\n";
+	s += "\![*]\__q[MenuSetting]地域の設定\__q";
+	if (officeId == "") {
+		s += "    地域: 未設定\n";
+	}
+	else {
+		string officeName = dictWeatherAreas["offices"][officeId]["name"];
+		s += "    地域: " + officeName + "\n";
+	}
+	s += "\n";
+	s += "\![*]\__q[MenuCancel]閉じる\__q\n";
+	s += "\_q\e";
+
+	sender = ref["Sender"];
+
+	dictOptionalHeader["target"] = sender;
+	dictOptionalHeader["script_option"] = "nobreak,notranslate";
+	dictOptionalHeader["marker"] = version();
+
+	return s;
+}
+
+string WeatherForecast(dict ref)
+{
+	string	officeId = dictSaveData["officeId"];
+	array	arJson = _httpget("https://www.jma.go.jp/bosai/forecast/data/overview_forecast/" + officeId + ".json", "utf8");
+	dict	dictWeather = _json2azv(arJson);
+
+	string	officeName = dictWeatherAreas["offices"][officeId]["name"];
+	string	s = "\0\s[0]\b[2]■" + officeName + "の天気\n\n[half]";
+	s += dictWeather["text"];
+	s += "\n\n（※出典：気象庁ホームページ）";
+	s += "\n\n[half]";
+	s += "\![*]\__q[OnMenuExec]メニューへ\__q\n";
+	s += "\![*]\__q[MenuCancel]閉じる\__q\e";
+
+	return s;
+}
+
+string MenuSetting(dict ref)
+{
+	string	s = "\0\s[0]\b[2]\_q地域を選択してください。\n\n";
+
+	array	keys = _dickeyget(dictWeatherAreas["centers"]);
+
+	for (int i = 0; i < _aryvn(keys); i++) {
+		s += "\![*]\__q[AreaSetting," + keys[i] + "]" + dictWeatherAreas["centers"][keys[i]]["name"] + "\__q\n";
+	}
+
+	s += "\n";
+	s += "\![*]\__q[OnMenuExec]メニューへ\__q\n";
+	s += "\![*]\__q[MenuCancel]閉じる\__q\n";
+	s += "\_q\e";
+
+	return s;
+}
+
+string AreaSetting(dict ref)
+{
+	string areaKey = ref["Reference2"];
+
+	string s = "\0\s[0]\b[2]\_q地域を選択してください。\n\n";
+
+	array aryChildren = dictWeatherAreas["centers"][areaKey]["children"];
+	for (int i = 0; i < _aryvn(aryChildren); i++) {
+		string childKey = dictWeatherAreas["centers"][areaKey]["children"][i];
+		string officeName = dictWeatherAreas["offices"][childKey]["name"];
+		s += "\![*]\__q[OfficeSetting," + childKey + "]" + officeName + "\__q\n";
+	}
+
+	s += "\n";
+	s += "\![*]\__q[OnMenuExec]メニューへ\__q\n";
+	s += "\![*]\__q[MenuCancel]閉じる\__q\n";
+	s += "\_q\e";
+	return s;
+}
+
+string OfficeSetting(dict ref)
+{
+	dictSaveData["officeId"] = ref["Reference2"];
+	return OnMenuExec(ref);
+}
+
+string MenuCancel(dict ref)
+{
+	return "\e";
+}
+
+string OnChoiceSelect(dict ref)
+{
+	return _fncstr(ref["Reference0"], ref);
+}
+string OnChoiceSelectEx(dict ref)
+{
+	return _fncstr(ref["Reference1"], ref);
+}
+
+string version()
+{
+	return "ukaten/0.3";
+}
+string pluginname()
+{
+	return "うかてん";
+}
