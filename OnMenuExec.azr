@@ -115,7 +115,7 @@ string OnChoiceSelectEx(dict ref)
 
 string version()
 {
-	return "ukaten/0.3";
+	return "ukaten/1.0";
 }
 string pluginname()
 {

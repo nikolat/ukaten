@@ -38,7 +38,6 @@ array _customrequest(dict ref)
 		ar	+=	"Sender: akari";
 		ar	+=	"Charset: UTF-8";
 		ar	+=	"";
-		ar	+=	"";
 		return ar;
 	}
 	// セキュリティレベル="External"なら即返る
@@ -46,7 +45,6 @@ array _customrequest(dict ref)
 		ar	+=	"PLUGIN/2.0 204 No Content";
 		ar	+=	"Sender: akari";
 		ar	+=	"Charset: UTF-8";
-		ar	+=	"";
 		ar	+=	"";
 		return ar;
 	}
@@ -58,7 +56,6 @@ array _customrequest(dict ref)
 		ar	+=	"PLUGIN/2.0 200 OK";
 		ar	+=	"Sender: akari";
 		ar	+=	"Charset: UTF-8";
-		ar	+=	"";
 		ar	+=	"";
 		return ar;
 	}
@@ -94,7 +91,6 @@ array _customrequest(dict ref)
 		}
 		resetOptionalHeader();
 		ar	+=	"";
-		ar	+=	"";
 		return ar;
 	}
 	// 未知のリクエスト
@@ -102,7 +98,6 @@ array _customrequest(dict ref)
 		ar	+=	"PLUGIN/2.0 400 Bad Request";
 		ar	+=	"Sender: akari";
 		ar	+=	"Charset: UTF-8";
-		ar	+=	"";
 		ar	+=	"";
 		return ar;
 	}

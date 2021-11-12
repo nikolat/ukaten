@@ -3,7 +3,7 @@
 //================================================
 // プラグインのバージョンを取得
 // [戻り値]
-// Reference0: プラグインのバージョン("ukaten/0.3"等)
+// Reference0: プラグインのバージョン("ukaten/1.0"等)
 string OnGetPluginVersion(dict ref)
 {
 	dictOptionalHeader["target"] = ref["Sender"];
