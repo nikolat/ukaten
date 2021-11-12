@@ -1,41 +1,41 @@
 ========================================================================
-�y�\�t�g���́z�����Ă�
-�y �� �� �� �zDon
-�y ����� �zWindows10 + SSP/2.4.91
-�y �^ �C �v �z�u�f���v�p�v���O�C��
-�y �戵��� �z�t���[�E�F�A
-�y �z�z���� �z2021/03/02
-�y �z �z �� �zhttp://nikolat.herokuapp.com/
-�y  ��  �l  �z��q
+【ソフト名称】うかてん
+【 制 作 者 】Don
+【 動作環境 】Windows10 + SSP/2.4.91
+【 タ イ プ 】「伺か」用プラグイン
+【 取扱種別 】フリーウェア
+【 配布月日 】2021/03/02
+【 配 布 元 】http://nikolat.herokuapp.com/
+【  備  考  】後述
 ========================================================================
-���T�v
+■概要
 
-  ����́u�f���v�œ��삷��V�C�\��v���O�C���ł��B
-  �P�̂œ��삳���邱�Ƃ͂ł��܂���B
-  �{�̂ƂȂ�x�[�X�E�F�A�uSSP�v����уC���^�t�F�[�X�ƂȂ�S�[�X�g��
-  �ʓr���p�ӂ��������B
+  これは「伺か」で動作する天気予報プラグインです。
+  単体で動作させることはできません。
+  本体となるベースウェア「SSP」およびインタフェースとなるゴーストを
+  別途ご用意ください。
 
-  �΂��Ƃ猤����
+  ばぐとら研究所
     http://ssp.shillest.net/
 
-  �V�C�\����͋C�ے���Web�T�C�g(�����API)����擾���Ă��܂��B
+  天気予報情報は気象庁のWebサイト(非公式API)から取得しています。
 
-�����C�Z���X
+■ライセンス
 
-  �ȉ��̃��W���[�����g�p�����Ē����Ă���܂��B
-  ���肪�Ƃ��������܂��B
+  以下のモジュールを使用させて頂いております。
+  ありがとうございます。
 
-  ��(akari.dll)
-    ��V����
+  灯(akari.dll)
+    夜天燈火
       http://le.silk.to/
 
-  ��L�ȊO�̃e�L�X�g�t�@�C���A�����t�@�C���̗ނ��́A
-  ���ׂ�public domain�Ƃ��Ď��R�ɗ��p�ł�����̂Ƃ��܂��B
+  上記以外のテキストファイル、辞書ファイルの類いは、
+  すべてpublic domainとして自由に利用できるものとします。
 
-���X�V����
+■更新履歴
 
-2021/03/02  Ver0.1  �E�V�K�쐬
-2021/03/03  Ver0.2  �E�S�[�X�g�ւ̃C�x���g�ʒm��ǉ�
-                      (�u�����Ƃイ�v�̃C�x���g�ʒm�ƌ݊�)
-2021/03/05  Ver0.3  �E�S�[�X�g���痘�p�ł���C�x���g�֐��Q��ǉ�
-                     �iOnGetPluginVersion,OnGetSavedArea,OnGetWeatherInfo)
+2021/03/02  Ver0.1  ・新規作成
+2021/03/03  Ver0.2  ・ゴーストへのイベント通知を追加
+                      (「ついっとゅう」のイベント通知と互換)
+2021/03/05  Ver0.3  ・ゴーストから利用できるイベント関数群を追加
+                     （OnGetPluginVersion,OnGetSavedArea,OnGetWeatherInfo)

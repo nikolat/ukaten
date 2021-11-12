@@ -1,4 +1,4 @@
-charset,Shift_JIS
+charset,UTF-8
 type,plugin
-name,‚¤‚©‚Ä‚ñ
+name,ã†ã‹ã¦ã‚“
 directory,ukaten

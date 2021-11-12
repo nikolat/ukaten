@@ -7,3 +7,4 @@ craftman,Don
 craftmanurl,http://nikolat.herokuapp.com/
 homeurl,http://home.384.jp/evidence/update/ukaten/
 secondchangeinterval,0
+readme.charset,UTF-8
