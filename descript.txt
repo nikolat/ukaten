@@ -4,7 +4,7 @@ name,うかてん
 id,52a46aa0-78b6-11eb-9881-0800200c9a66
 filename,akari.dll
 craftman,Don
-craftmanurl,http://nikolat.herokuapp.com/
+craftmanurl,https://nikolat.github.io/
 homeurl,https://raw.githubusercontent.com/nikolat/ukaten/main/
 secondchangeinterval,0
 readme.charset,UTF-8
