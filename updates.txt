@@ -1,0 +1,8 @@
+charset,UTF-8
+file,OnMenuExec.azrd611e633a30891e1118d2a9249eecb0bsize=3030date=2012-12-21T00:00:00
+file,akari.dll604e9d9fa66b8ad367d22ccd682a74e4size=889856date=2012-12-21T00:00:00
+file,descript.txt88d8d24a2a930e0fa520ef54b7edf57fsize=262date=2012-12-21T00:00:00
+file,install.txta22e0a1f9412d86f84e1a66d09ef878bsize=61date=2012-12-21T00:00:00
+file,main.azr3c0c25be22bc9fb0073c950a78008e75size=2801date=2012-12-21T00:00:00
+file,readme.txt6203c9a347c90e9b59e74ef310a216aasize=1609date=2012-12-21T00:00:00
+file,util.azra4a667b1c27682db6088b1fca126234csize=2369date=2012-12-21T00:00:00
