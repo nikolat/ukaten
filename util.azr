@@ -51,9 +51,16 @@ string OnGetWeatherInfo(dict ref)
 	if (infoKey == "") infoKey = "text";
 
 	array	arJson = _httpget("https://www.jma.go.jp/bosai/forecast/data/" + infoType + "/" + officeId + ".json", "utf8");
-	dict	dictWeather = _json2azv(arJson);
-	string	response = dictWeather[infoKey];
-
+	string t = arJson[0];
+	string response;
+	if (_substr(t, 0, 1) == "{") {
+		dict dictWeather = _json2azv(arJson);
+		response = dictWeather[infoKey];
+	}
+	else {
+		array arrayWeather = _json2azv(arJson);
+		response = arrayWeather[0][infoKey];
+	}
 	dictOptionalHeader["target"] = ref["Sender"];
 	dictOptionalHeader["event"] = ref["ID"];
 	dictOptionalHeader["reference"] = {response};
